@@ -11,25 +11,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Vincent Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nws321.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/nws321)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Software Developer
 
-### Jane Doe
+### Wei Zhi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/leongwz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/leongwz)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: TBC
 
 ### Johnny Doe
 
@@ -50,11 +50,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Terence Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/terencewongsextravaganza.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/TerenceWongsExtravaganza)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
