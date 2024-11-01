@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path socialBookFilePath = Paths.get("data" , "socialbook.json");
+    private Path archivedSocialBookFilePath = Paths.get("data", "socialbook-archived.json");
     private Path appointmentFilePath = Paths.get("data" , "appointments.json");
 
     /**
@@ -37,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setSocialBookFilePath(newUserPrefs.getSocialBookFilePath());
+        setArchivedSocialBookFilePath(newUserPrefs.getArchivedSocialBookFilePath());
         setAppointmentFilePath(newUserPrefs.getAppointmentFilePath());
     }
 
@@ -56,6 +58,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setSocialBookFilePath(Path socialBookFilePath) {
         requireNonNull(socialBookFilePath);
         this.socialBookFilePath = socialBookFilePath;
+    }
+
+    public Path getArchivedSocialBookFilePath() {
+        return archivedSocialBookFilePath;
+    }
+
+    public void setArchivedSocialBookFilePath(Path archivedSocialBookFilePath) {
+        requireNonNull(archivedSocialBookFilePath);
+        this.archivedSocialBookFilePath = archivedSocialBookFilePath;
     }
 
     public Path getAppointmentFilePath() {
@@ -80,18 +91,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(otherUserPrefs.guiSettings)
                 && socialBookFilePath.equals(otherUserPrefs.socialBookFilePath)
+                && archivedSocialBookFilePath.equals(otherUserPrefs.archivedSocialBookFilePath)
                 && appointmentFilePath.equals(otherUserPrefs.appointmentFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, socialBookFilePath);
+        return Objects.hash(guiSettings, socialBookFilePath, archivedSocialBookFilePath);
     }
 
     @Override
     public String toString() {
         return "Gui Settings : " + guiSettings
                 + "\nLocal socialbook data file location : " + socialBookFilePath
+                + "\nLocal archived socialbook data file location : " + archivedSocialBookFilePath
                 + "\nLocal appointment data file location : " + appointmentFilePath;
     }
 }

@@ -35,6 +35,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAppointmentStorage;
+import seedu.address.storage.JsonArchivedAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -53,11 +54,14 @@ public class LogicManagerTest {
     public void setUp() {
         JsonAddressBookStorage socialBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("socialbook.json"));
+        JsonArchivedAddressBookStorage archivedSocialBookStorage =
+                new JsonArchivedAddressBookStorage(temporaryFolder.resolve("socialbook-archived.json"));
         JsonAppointmentStorage appointmentStorage =
                 new JsonAppointmentStorage(temporaryFolder.resolve("appointments.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(socialBookStorage, appointmentStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(socialBookStorage, archivedSocialBookStorage,
+                appointmentStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -166,6 +170,13 @@ public class LogicManagerTest {
             }
         };
 
+        JsonArchivedAddressBookStorage archivedAddressBookStorage = new JsonArchivedAddressBookStorage(socialBookPath) {
+            @Override
+            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+                throw e;
+            }
+        };
+
         Path appointmentPath = temporaryFolder.resolve("ExceptionAppointments.json");
         JsonAppointmentStorage appointmentStorage = new JsonAppointmentStorage(appointmentPath) {
             @Override
@@ -176,7 +187,8 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, appointmentStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, archivedAddressBookStorage, appointmentStorage,
+                userPrefsStorage);
 
         logic = new LogicManager(model, storage);
 

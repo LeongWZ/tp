@@ -28,6 +28,7 @@ import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.AppointmentStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAppointmentStorage;
+import seedu.address.storage.JsonArchivedAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -62,8 +63,11 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getSocialBookFilePath());
+        AddressBookStorage archivedAddressBookStorage =
+                new JsonArchivedAddressBookStorage(userPrefs.getArchivedSocialBookFilePath());
         AppointmentStorage appointmentStorage = new JsonAppointmentStorage(userPrefs.getAppointmentFilePath());
-        storage = new StorageManager(addressBookStorage, appointmentStorage, userPrefsStorage);
+        storage = new StorageManager(addressBookStorage, archivedAddressBookStorage, appointmentStorage,
+                userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 

@@ -13,6 +13,8 @@ public interface ReadOnlyUserPrefs {
 
     Path getSocialBookFilePath();
 
+    Path getArchivedSocialBookFilePath();
+
     Path getAppointmentFilePath();
 
 }
