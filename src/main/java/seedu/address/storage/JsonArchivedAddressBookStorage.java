@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 
 /**
@@ -48,14 +49,15 @@ public class JsonArchivedAddressBookStorage implements AddressBookStorage {
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableAddressBook.class);
         if (jsonAddressBook.isEmpty()) {
-            return Optional.empty();
+            logger.info("No archive data found. Initializing with an empty archive address book.");
+            return Optional.of(new AddressBook());
         }
 
         try {
             return Optional.of(jsonAddressBook.get().toArchivedModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataLoadingException(ive);
+            throw new DataLoadingException(ive, filePath);
         }
     }
 

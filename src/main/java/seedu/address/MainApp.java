@@ -92,7 +92,8 @@ public class MainApp extends Application {
                 return SampleDataUtil.getSampleAddressBook();
             });
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
+            logger.warning("Data file at " + e.getFilePath().map(Object::toString).orElse("unspecified path")
+                    + " could not be loaded."
                     + " Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
         }
